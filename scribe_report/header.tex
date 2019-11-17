@@ -1,0 +1,166 @@
+%!TEX root = main.tex
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{listings}
+\usepackage{enumerate}
+\usepackage{upquote}
+\usepackage[absolute]{textpos} % Manual placement of certain things
+\usepackage{ragged2e} % Ragged-right columns with hyphenation
+\usepackage{nicefrac}
+\usepackage{macros}
+\usepackage[format=hang,font=footnotesize,labelfont=bf]{caption}
+\captionsetup{format=plain} % removes indent in captions...
+\usepackage[expansion=false, babel=true]{microtype}
+\usepackage{subfig}
+\usepackage{ifthen}
+\usepackage{longtable}
+\usepackage{stmaryrd} % for \shortrightarrow and \shortleftarrow
+\usepackage{wrapfig}
+\usepackage{footnote} % savenotes environment
+\usepackage{tikz}
+\usepackage[bottom,hang,flushmargin]{footmisc} % puts footnotes *under* bottom-aligned figures and remove the ugly left indentation.
+\usepackage{adjustbox} % for aligning tikzpicture in tabular cell
+
+\IfFileExists{MinionPro.sty}
+   {\usepackage[opticals,fullfamily,lf]{MinionPro}}
+   {\usepackage{charter}\message{Package MinionPro.sty was not found. Reverting to charter.}}
+
+\typearea[current]{last}
+\raggedbottom
+\renewcommand*\ttdefault{txtt}
+
+\usepackage{scrpage2}
+\ofoot[]{}
+\cfoot[]{}
+\automark[subsection]{section}
+\ihead{\normalfont\scshape\leftmark}
+\ohead{\normalfont\scshape\rightmark}
+\chead{}
+\setheadsepline{.2pt}
+\setkomafont{pagenumber}{\normalfont}
+\addtokomafont{sectioning}{\color{myblue}\rmfamily}
+\addtokomafont{descriptionlabel}{\rmfamily}
+\pagestyle{scrheadings}
+
+\usepackage[
+    bookmarks,
+    bookmarksnumbered,
+    colorlinks,
+    plainpages=false,
+    pdfpagelabels,
+    hypertexnames=false,
+    linkcolor=myblue,
+    urlcolor=myblue,
+    citecolor=mygreen,
+    pdfpagelabels,
+    pdftitle={IFT 6095 Project Reports},
+    pdfauthor={Derek Nowrouzezahrai},
+    pdfstartview=FitH
+]{hyperref}
+
+\definecolor{myblue}{rgb}{0,.1,.6}
+\definecolor{myred}{rgb}{0.63,.16,.16}
+\definecolor{mygreen}{rgb}{0.1,.53,.1}
+\definecolor{lstshade}{gray}{0.95}
+\definecolor{lstframe}{gray}{0.80}
+\definecolor{lstcomment}{gray}{0.5}
+\definecolor{lstattrib}{rgb}{0,0.34,0}
+\definecolor{remark}{rgb}{1.0, 0.9, 0.9}
+\definecolor{remarkframe}{rgb}{1.0, 0.7, 0.7}
+
+% requires the latest version of package accsupp
+\usepackage[space=true]{accsupp}
+\newcommand{\copyablespace}{\BeginAccSupp{method=hex,unicode,ActualText=00A0}\ \EndAccSupp{}}
+
+% Listings settings
+\lstset{
+    basicstyle = \ttfamily\linespread{0.8}\footnotesize,%\small\ttfamily\raggedright,
+    commentstyle=\ttfamily\scriptsize\color{mygreen}\itshape,
+    stringstyle=\color{lstattrib},
+    mathescape = true,
+    frame = lrtb,
+    backgroundcolor = \color{lstshade},
+    rulecolor = \color{lstframe},
+    tabsize = 2,
+    columns = fullflexible,
+    keepspaces,
+    belowskip = \smallskipamount,
+    framerule = .7pt,
+    breaklines = true,
+    showstringspaces = false,
+    keywordstyle = \bfseries\color{myblue},
+    captionpos = b,
+    upquote = true,
+    numbers=left,
+    numbersep=5pt,                   % how far the line-numbers are from the code
+    numberstyle=\ttfamily\tiny, % the style that is used for the line-numbers
+    stepnumber=1,
+    literate={\ }{{\copyablespace}}1
+}
+
+
+% Modify the bibliography style
+\makeatletter
+\renewcommand\@biblabel[1]{[\textcolor{mygreen}{#1}]} % No brackets for the references
+\renewenvironment{thebibliography}[1]
+     {\section*{\refname}%
+      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{[\textcolor{mygreen}{#1}]}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelwidth% change 20 pt according to your needs
+            \advance\leftmargin\labelsep
+            \setlength\itemindent{-\labelwidth\@plus\labelsep}%\labelwidth}% change using the inverse of the length used before
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\renewcommand\newblock{\hskip .11em\@plus.33em\@minus.07em}
+\makeatother
+
+
+
+% Set up textpos
+%\TPGrid{68}{108}
+
+% Thick frames for images
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{1.5pt}
+
+% Less vertical spacing for \figure[h] floats
+\setlength{\intextsep}{3pt}
+
+\begin{document}
+\ofoot[\pagemark]{\pagemark}
+
+
+% spacing between paragraphs
+\renewcommand{\newline}{\\[5pt]}
+
+% math helper shorthand commands
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\xo}{\mathbf{x}_o}
+\renewcommand{\xi}{\mathbf{x}_i}
+\newcommand{\xs}{\mathbf{x}_s}
+\newcommand{\n}{\vec{\mathbf{n}}}
+\newcommand{\wo}{\mathbf{\omega}_o}
+\newcommand{\wi}{\mathbf{\omega}_i}
+\newcommand{\ws}{\mathbf{\omega}_{s}}
+\renewcommand{\d}{\mbox{d}}
